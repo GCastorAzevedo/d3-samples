@@ -43,10 +43,26 @@ export function multinoulli(...weights) {
   };
 }
 
+export function gaussian(m, s) {
+  const a = (s * Math.sqrt(2 * Math.PI)) ** -1;
+  return (x) => {
+    return a * Math.exp(-0.5 * ((parseFloat(x) - m) / s) ** 2);
+  };
+}
+
 export function biGaussian(m1 = 0, m2 = 0, s1 = 1, s2 = 1, p = 0.5) {
   const gaussian1 = d3.randomNormal(m1, s1);
   const gaussian2 = d3.randomNormal(m2, s2);
   return () => (bernoulli(p) ? gaussian1() : gaussian2());
+}
+
+export function mixture(models, weights) {
+  console.log(weights);
+  if (weights && weights.length < models.length) {
+    weights = [...Array(models.length).keys()].map(() => 1);
+  }
+  return (x) =>
+    models.reduce((total, model, i) => total + weights[i] * model(x), 0);
 }
 
 export function mixtureModel(models, weights) {
@@ -54,7 +70,6 @@ export function mixtureModel(models, weights) {
   if (weights && weights.length < models.length) {
     weights = [...Array(models.length).keys()].map(() => 1);
   }
-  console.log(models.length, weights.length, models[0](), models[1](), weights);
   const selectModel = multinoulli(...weights);
   return () => {
     return models[selectModel() - 1]();

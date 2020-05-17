@@ -6,6 +6,7 @@ module.exports = [
   {
     entry: {
       poll: path.resolve(__dirname, "src", "samples", "poll", "index.js"),
+      plots: path.resolve(__dirname, "src", "samples", "plots", "index.js"),
       mixtures: path.resolve(__dirname, "src/samples/mixtures/index.js"),
     },
     output: {
@@ -30,7 +31,6 @@ module.exports = [
         },
       ],
     },
-    mode: "development",
     devtool: "source-map",
     devServer: {
       contentBase: path.join(__dirname, "dist"),
@@ -47,6 +47,11 @@ module.exports = [
         template: path.resolve(__dirname, "public", "templates", "index.html"),
         filename: path.resolve(__dirname, "dist", "mixtures", "index.html"),
         chunks: ["mixtures"],
+      }),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "templates", "index.html"),
+        filename: path.resolve(__dirname, "dist", "plots", "index.html"),
+        chunks: ["plots"],
       }),
       new webpack.ProvidePlugin({
         d3: path.resolve(__dirname, "src", "d3.js"),
