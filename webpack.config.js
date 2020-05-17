@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = [
   {
     entry: {
+      main: path.resolve(__dirname, "src", "samples", "plots", "index.js"),
       poll: path.resolve(__dirname, "src", "samples", "poll", "index.js"),
       plots: path.resolve(__dirname, "src", "samples", "plots", "index.js"),
       mixtures: path.resolve(__dirname, "src/samples/mixtures/index.js"),
@@ -38,6 +39,11 @@ module.exports = [
       port: 9000,
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "templates", "index.html"),
+        filename: path.resolve(__dirname, "index.html"),
+        chunks: ["main"],
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "templates", "index.html"),
         filename: path.resolve(__dirname, "dist", "poll", "index.html"),
