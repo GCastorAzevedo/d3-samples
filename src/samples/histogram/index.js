@@ -1,4 +1,4 @@
-// https://www.d3-graph-gallery.com/histogram
+/* // https://www.d3-graph-gallery.com/histogram
 
 const margin = {
     top: 10,
@@ -49,3 +49,4 @@ d3.csv(
     .attr("transform", (d) => `translate(${x(d.x0)},${y(d.length)})`)
     .style("fill", "#69b3a2");
 });
+ */

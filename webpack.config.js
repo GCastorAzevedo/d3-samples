@@ -6,7 +6,7 @@ module.exports = [
   {
     entry: {
       poll: path.resolve(__dirname, "src", "samples", "poll", "index.js"),
-      gaussian: path.resolve(__dirname, "src/samples/gaussian/index.js"),
+      mixtures: path.resolve(__dirname, "src/samples/mixtures/index.js"),
     },
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -19,6 +19,10 @@ module.exports = [
         {
           test: /\.css$/,
           use: ["style-loader", "css-loader"],
+        },
+        {
+          test: /\.pug$/,
+          use: ["pug-loader"],
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
@@ -41,8 +45,8 @@ module.exports = [
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "templates", "index.html"),
-        filename: path.resolve(__dirname, "dist", "gaussian", "index.html"),
-        chunks: ["gaussian"],
+        filename: path.resolve(__dirname, "dist", "mixtures", "index.html"),
+        chunks: ["mixtures"],
       }),
       new webpack.ProvidePlugin({
         d3: path.resolve(__dirname, "src", "d3.js"),
