@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = [
   {
     entry: {
-      main: path.resolve(__dirname, "src", "samples", "plots", "index.js"),
       poll: path.resolve(__dirname, "src", "samples", "poll", "index.js"),
       plots: path.resolve(__dirname, "src", "samples", "plots", "index.js"),
       mixtures: path.resolve(__dirname, "src/samples/mixtures/index.js"),
@@ -41,11 +40,6 @@ module.exports = [
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "templates", "index.html"),
-        filename: path.resolve(__dirname, "index.html"),
-        chunks: ["main"],
-      }),
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public", "templates", "index.html"),
         filename: path.resolve(__dirname, "dist", "poll", "index.html"),
         chunks: ["poll"],
       }),
@@ -58,6 +52,44 @@ module.exports = [
         template: path.resolve(__dirname, "public", "templates", "index.html"),
         filename: path.resolve(__dirname, "dist", "plots", "index.html"),
         chunks: ["plots"],
+      }),
+      new webpack.ProvidePlugin({
+        d3: path.resolve(__dirname, "src", "d3.js"),
+      }),
+    ],
+  },
+  {
+    entry: {
+      main: path.resolve(__dirname, "src", "samples", "plots", "index.js"),
+    },
+    output: {
+      path: path.resolve(__dirname),
+      filename: "bundle.js",
+      library: "app",
+      libraryTarget: "umd",
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"],
+        },
+        {
+          test: /\.pug$/,
+          use: ["pug-loader"],
+        },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: ["file-loader"],
+        },
+      ],
+    },
+    devtool: "source-map",
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "templates", "index.html"),
+        filename: path.resolve(__dirname, "index.html"),
+        chunks: ["main"],
       }),
       new webpack.ProvidePlugin({
         d3: path.resolve(__dirname, "src", "d3.js"),
