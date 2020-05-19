@@ -1,5 +1,5 @@
-import { gaussian, mixture } from "../../distributions";
-
+// import "../../../public/styles/plots.css";
+import { gaussian, mixture } from "../../../distributions";
 const colors = {
   orange: "#eba307",
   turquoise: "#3babbf",

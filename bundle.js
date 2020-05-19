@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/samples/plots/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/samples/plots/gaussianMixture/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -30540,17 +30540,17 @@ function mixtureModel(models, weights) {
 
 /***/ }),
 
-/***/ "./src/samples/plots/index.js":
-/*!************************************!*\
-  !*** ./src/samples/plots/index.js ***!
-  \************************************/
+/***/ "./src/samples/plots/gaussianMixture/index.js":
+/*!****************************************************!*\
+  !*** ./src/samples/plots/gaussianMixture/index.js ***!
+  \****************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(d3) {/* harmony import */ var _distributions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../distributions */ "./src/distributions/index.js");
-
+/* WEBPACK VAR INJECTION */(function(d3) {/* harmony import */ var _distributions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../distributions */ "./src/distributions/index.js");
+// import "../../../public/styles/plots.css";
 
 const colors = {
   orange: "#eba307",

@@ -1,4 +1,4 @@
-import "../../../public/styles/poll.css";
+// import "../../../public/styles/poll.css";
 
 // https://pusher.com/tutorials/live-graph-d3
 
@@ -9,8 +9,9 @@ const height = 500 - margin.top - margin.bottom;
 const x = d3.scaleBand().range([0, width]).padding(0.1);
 const y = d3.scaleLinear().range([height, 0]);
 
-const container = d3.select("body").append("div").attr("class", "container");
-container.append("h1").text("Visual Inequality");
+// const container = d3.select("body").append("div").attr("class", "container");
+// container.append("h1").text("Visual Inequality");
+const container = d3.select("#dataviz");
 
 const svg = container
   .append("svg")
