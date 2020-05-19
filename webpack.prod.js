@@ -1,38 +1,51 @@
+const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+//  fs.readdirSync('./')
 const histograms = {
-  entries: ["poll", "simple", "threshold"].reduce((entries, fileDirectory) => {
-    return {
-      ...entries,
-      [`histograms/${fileDirectory}`]: `./src/samples/histograms/${fileDirectory}/index.js`,
-    };
-  }, {}),
-  plugins: ["poll", "simple", "threshold"].map((fileDirectory) => {
+  entries: fs
+    .readdirSync("./src/samples/histograms")
+    .reduce((entries, fileDirectory) => {
+      return {
+        ...entries,
+        [`histograms/${fileDirectory}`]: `./src/samples/histograms/${fileDirectory}/index.js`,
+      };
+    }, {}),
+  plugins: fs.readdirSync("./src/samples/histograms").map((fileDirectory) => {
+    const filename = `./src/samples/histograms/${fileDirectory}/locals.js`;
+    const locals = fs.existsSync(filename)
+      ? require(filename)
+      : {
+          title: fileDirectory,
+        };
     return new HtmlWebpackPlugin({
       template: `./public/views/samples/index.pug`,
       filename: `./histograms/${fileDirectory}/index.html`,
       chunks: [`histograms/${fileDirectory}`],
+      locals,
     });
   }),
 };
 
 const plots = {
-  entries: ["densityPlots", "gaussianMixture"].reduce(
-    (entries, fileDirectory) => {
+  entries: fs
+    .readdirSync("./src/samples/plots")
+    .reduce((entries, fileDirectory) => {
       return {
         ...entries,
         [`plots/${fileDirectory}`]: `./src/samples/plots/${fileDirectory}/index.js`,
       };
-    },
-    {}
-  ),
-  plugins: ["densityPlots", "gaussianMixture"].map((fileDirectory) => {
+    }, {}),
+  plugins: fs.readdirSync("./src/samples/plots").map((fileDirectory) => {
     return new HtmlWebpackPlugin({
       template: `./public/views/samples/index.pug`,
       filename: `./plots/${fileDirectory}/index.html`,
       chunks: [`plots/${fileDirectory}`],
+      locals: {
+        sample: fileDirectory,
+      },
     });
   }),
 };

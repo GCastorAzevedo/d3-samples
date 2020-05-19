@@ -1,4 +1,9 @@
 extends ../layout.pug 
 block content
-  h1 Data Visualization
-  div(id="dataviz")
+  div(class="container")
+    if locals.title
+      h1 #{locals.title}
+    else
+      h1 Data Visualization
+    h2 #{locals.subTitle}
+    div(id="dataviz")

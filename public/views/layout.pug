@@ -9,5 +9,5 @@ html(lang='en')
       include ../styles/main.css
     link(href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&amp;display=swap" rel="stylesheet")
   body
-    div(class="container")
-      block content
+    - const locals = htmlWebpackPlugin.options.locals
+    block content
