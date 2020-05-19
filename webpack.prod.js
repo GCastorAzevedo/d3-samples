@@ -77,7 +77,7 @@ module.exports = [
   {
     mode: "production",
     entry: {
-      main: "./src/samples/plots/gaussianMixture/index.js",
+      main: "./src/samples/plots/densityPlots/index.js",
     },
     output: {
       path: path.resolve(__dirname),
@@ -103,7 +103,7 @@ module.exports = [
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public/views/index.pug"),
+        template: path.resolve(__dirname, "public/views/samples/index.pug"),
         filename: path.resolve(__dirname, "index.html"),
         chunks: ["main"],
       }),
