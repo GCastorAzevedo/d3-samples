@@ -103,7 +103,7 @@ module.exports = [
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public/views/samples/index.pug"),
+        template: path.resolve(__dirname, "public/views/index.pug"),
         filename: path.resolve(__dirname, "index.html"),
         chunks: ["main"],
       }),
