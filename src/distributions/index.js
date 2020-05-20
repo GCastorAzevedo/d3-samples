@@ -56,6 +56,17 @@ export function biGaussian(m1 = 0, m2 = 0, s1 = 1, s2 = 1, p = 0.5) {
   return () => (bernoulli(p) ? gaussian1() : gaussian2());
 }
 
+export function boxMullerGaussian(m, s) {
+  return () => {
+    return (
+      m +
+      s *
+        Math.sqrt(-2 * Math.log(Math.random())) *
+        Math.cos(2 * Math.PI * Math.random())
+    );
+  };
+}
+
 export function mixture(models, weights) {
   console.log(weights);
   if (weights && weights.length < models.length) {

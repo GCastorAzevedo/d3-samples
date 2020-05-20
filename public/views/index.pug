@@ -1,6 +1,7 @@
 extends layout.pug
 block content
   h1 plots
+  //- - const root = locals.mode === 'development' ? 'dist' : 'production'
   div
     a(href="./production/plots/densityPlots/index.html") Density Plots
   div
@@ -10,3 +11,5 @@ block content
     a(href="./production/histograms/simple/index.html") Simple Histogram
   div
     a(href="./production/histograms/threshold/index.html") Histogram with threshold
+  div
+    a(href="./production/histograms/boxMiller/index.html") Box-Miller Gaussian Histogram

@@ -24,7 +24,10 @@ const histograms = {
       template: `./public/views/samples/index.pug`,
       filename: `./histograms/${fileDirectory}/index.html`,
       chunks: [`histograms/${fileDirectory}`],
-      locals,
+      locals: {
+        ...locals,
+        sample: fileDirectory,
+      },
     });
   }),
 };
@@ -39,11 +42,18 @@ const plots = {
       };
     }, {}),
   plugins: fs.readdirSync("./src/samples/plots").map((fileDirectory) => {
+    const filename = `./src/samples/plots/${fileDirectory}/locals.js`;
+    const locals = fs.existsSync(filename)
+      ? require(filename)
+      : {
+          title: fileDirectory,
+        };
     return new HtmlWebpackPlugin({
       template: `./public/views/samples/index.pug`,
       filename: `./plots/${fileDirectory}/index.html`,
       chunks: [`plots/${fileDirectory}`],
       locals: {
+        ...locals,
         sample: fileDirectory,
       },
     });

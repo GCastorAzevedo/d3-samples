@@ -100,18 +100,4 @@ svg.append("circle").attr("cx",300).attr("cy",60).attr("r", 6).style("fill", "#4
 svg.append("text").attr("x", 320).attr("y", 30).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
 svg.append("text").attr("x", 320).attr("y", 60).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
 
-// Function to compute density
-function kernelDensityEstimator(kernel, X) {
-  return function(V) {
-    return X.map(function(x) {
-      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
-    });
-  };
-}
-function kernelEpanechnikov(k) {
-  return function(v) {
-    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
-  };
-}
-
-</script> */
+*/
