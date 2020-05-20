@@ -1,4 +1,4 @@
-import { mixtureModel } from "../../../distributions";
+import { mixtureModel } from "../../distributions";
 
 function kernelDensityEstimator(kernel, X) {
   return function (V) {

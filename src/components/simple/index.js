@@ -1,13 +1,18 @@
-import { boxMullerGaussian } from "../../../distributions/index";
+// https://www.d3-graph-gallery.com/histogram
+
+// Check out
+// https://subscription.packtpub.com/book/web_development/9781782160007/1/ch01lvl1sec10/a-simple-histogram
+
+import { biGaussian, multinoulli, mixtureModel } from "../../distributions";
 
 const margin = {
-  top: 10,
-  right: 30,
-  bottom: 30,
-  left: 40,
-};
-const width = 460 - margin.left - margin.right;
-const height = 400 - margin.top - margin.bottom;
+    top: 10,
+    right: 30,
+    bottom: 30,
+    left: 40,
+  },
+  width = 460 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
 
 const svg = d3
   .select("#dataviz")
@@ -17,8 +22,12 @@ const svg = d3
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
-const total = 10000;
-const data = d3.range(total).map(boxMullerGaussian(0, 1)).sort(d3.ascending);
+const distribution = mixtureModel(
+  [d3.randomNormal(-10, 2), d3.randomNormal(0, 3), d3.randomNormal(10, 1.5)],
+  [3.5, 2.5, 4]
+);
+// biGaussian(0, 20, 4, 4, 0.4)
+const data = d3.range(10000).map(distribution).sort(d3.ascending);
 
 const min = Math.min(...data) - 10;
 const max = Math.max(...data) + 10;
@@ -37,6 +46,7 @@ function draw(data) {
     .domain(x.domain())
     .thresholds(x.ticks(100));
   const bins = histogram(data);
+  console.log(bins);
 
   const y = d3.scaleLinear().range([height, 0]);
   y.domain([0, d3.max(bins, (d) => d.length)]);

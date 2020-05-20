@@ -1,4 +1,4 @@
-import { mixtureModel } from "../../../distributions";
+import { mixtureModel } from "../../distributions";
 
 const distribution = mixtureModel(
   [d3.randomNormal(-10, 2), d3.randomNormal(0, 3), d3.randomNormal(10, 1.5)],

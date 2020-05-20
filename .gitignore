@@ -1,3 +1,16 @@
+# production dists go live on github
+# TODO: automate build with Github actions
+dist/*
+!dist/production
+
+
+
+application/*
+!application/**/
+application/language/*
+!application/language/**/
+!application/language/gr/**
+
 # private folder
 _private/
 
@@ -88,7 +101,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/

@@ -1,4 +1,4 @@
-import { boxMullerGaussian } from "../../../distributions/index";
+import { boxMullerGaussian } from "../../distributions/index";
 
 const colors = {
   orange: "#eba307",

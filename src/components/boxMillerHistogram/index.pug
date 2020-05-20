@@ -1,0 +1,9 @@
+extends ../../../public/views/layout.pug
+block content
+  div(class="container")
+    if locals.title
+      h1 #{locals.title}
+    else
+      h1 Data Visualization
+    h2 #{locals.subTitle}
+    div(id="dataviz")

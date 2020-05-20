@@ -1,15 +1,14 @@
 extends layout.pug
 block content
   h1 plots
-  //- - const root = locals.mode === 'development' ? 'dist' : 'production'
   div
-    a(href="./production/plots/densityPlots/index.html") Density Plots
+    a(href=`./dist/${locals.mode}/densityPlots/index.html`) Density Plots
   div
-    a(href="./production/plots/gaussianMixture/index.html") Gaussian Mixture
+    a(href=`./dist/${locals.mode}/gaussianMixture/index.html`) Gaussian Mixture
   h1 histograms
   div
-    a(href="./production/histograms/simple/index.html") Simple Histogram
+    a(href=`./dist/${locals.mode}/simple/index.html`) Simple Histogram
   div
-    a(href="./production/histograms/threshold/index.html") Histogram with threshold
+    a(href=`./dist/${locals.mode}/threshold/index.html`) Histogram with threshold
   div
-    a(href="./production/histograms/boxMiller/index.html") Box-Miller Gaussian Histogram
+    a(href=`./dist/${locals.mode}/boxMiller/index.html`) Box-Miller Gaussian Histogram
